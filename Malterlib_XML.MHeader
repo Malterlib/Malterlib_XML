@@ -1,0 +1,74 @@
+// Copyright © 2016 Hansoft AB 
+// Distributed under the MIT license, see license text in LICENSE.Malterlib
+
+Import "../Core/Lib_Malterlib.MTarget"
+
+%Group "{Malterlib}/{Lib_Malterlib_XML}"
+{
+	Property
+	{
+		MalterlibNoShortcuts false
+	}
+	
+	Compile
+	{
+		!!CompileDialect C
+		PrefixHeader "@('Source/Malterlib_XML.h'->MakeAbsolute())"
+	}
+	
+	%Group XML
+	{
+		%Group Include
+		{
+			Compile.Type "C++"
+			{
+				!!DocumentationEnabled true
+			}
+			%File "Include/Mib/XML/^*"
+		}
+		%File "Source/^*"
+		%Group Documentation
+		{
+			%File "Documentation/*"
+		}
+	}
+	%Dependency Lib_Malterlib_Concurrency
+	{
+		Dependency.Indirect true
+	}	
+}
+
+Property
+{
+	MalterlibLibrary_XML true
+	{
+		&
+		{
+			MalterlibLibrary_XML ""
+			MalterlibLibrary_All true
+		}
+	}
+	MalterlibSubLibraries "XML;@(MalterlibSubLibraries)"
+	{
+		!!MalterlibLibrary_XML true
+	}
+	MalterlibLibrarySeparate_Lib_Malterlib_XML true
+//	MalterlibSubLibrarySeparate_Lib_Malterlib_XML true
+	MalterlibIncludeRoots "@('Include'->MakeAbsolute());@(MalterlibIncludeRoots)"
+	{
+		!!MalterlibLibrary_XML true
+	}
+}
+
+%Group "{Test}/{Malterlib_XML}"
+{
+}
+
+Property
+{
+	!!MalterlibEnableInternalTests true
+	MalterlibTests "Malterlib_XML;@(MalterlibTests)"
+	MalterlibTestFiles_Malterlib_XML "@('Test/*'->MakeAbsolute())"
+	MalterlibTestDependencies_Malterlib_XML "Lib_Malterlib_XML"
+	MalterlibTestExtraGroups_Malterlib_XML "{Test}/{Malterlib_XML}"
+}
