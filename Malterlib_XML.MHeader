@@ -3,6 +3,15 @@
 
 Import "../Core/Lib_Malterlib.MTarget"
 
+%Repository "tinyxml2"
+{
+	Repository
+	{
+		Type External
+		Remotes "upstream=https://github.com/leethomason/tinyxml2.git;@(Repository.Remotes)"
+	}
+}
+
 %Group "{Malterlib}/{Lib_Malterlib_XML}"
 {
 	Property
@@ -27,6 +36,18 @@ Import "../Core/Lib_Malterlib.MTarget"
 			%File "Include/Mib/XML/^*"
 		}
 		%File "Source/^*"
+		%Group External
+		{
+			Compile
+			{
+				!!MalterlibCompileSupportTabSetings true
+				IndentWidth 4
+				TabWidth 4
+				UsesTabs false
+			}
+			%File "../../External/tinyxml2/tinyxml2.cpp"
+			%File "../../External/tinyxml2/tinyxml2.h"
+		}
 		%Group Documentation
 		{
 			%File "Documentation/*"
