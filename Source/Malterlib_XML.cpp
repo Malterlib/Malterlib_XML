@@ -63,7 +63,10 @@ namespace NMib::NXML
 	{
 		XMLPrinter Printer{nullptr, (PrintDialect)_Dialect};
 		mp_pDocument->Print(&Printer);
-		return CStr(Printer.CStr(), Printer.CStrSize() - 1);
+		if (mp_pDocument->HasBOM())
+			return CStr(Printer.CStr() + 3, Printer.CStrSize() - 4);
+		else
+			return CStr(Printer.CStr(), Printer.CStrSize() - 1);
 	}
 
 	void CXMLDocument::f_SaveFile(CStr const &_FileName, EXMLOutputDialect _Dialect)
