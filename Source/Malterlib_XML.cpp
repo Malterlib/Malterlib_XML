@@ -138,13 +138,11 @@ namespace NMib::NXML
 
 	CStr CXMLDocument::f_GetNodeText(CXMLNode const *_pNode)
 	{
-		for (CXMLNode const* pChild = _pNode->FirstChild(); pChild; ++pChild)
+		for (CXMLNode const* pChild = _pNode->FirstChild(); pChild; pChild = pChild->NextSibling())
 		{
 			XMLText const* pText = pChild->ToText();
 			if (pText)
-			{
 				return pText->Value();
-			}
 		}
 
 		return CStr();
@@ -166,7 +164,7 @@ namespace NMib::NXML
 		{
 			DDTrace("{sj*}{}" DNewLine, "" << _Depth*2 << _pNode->Value());
 
-			for (CXMLNode const* pChild = _pNode->FirstChild(); pChild; ++pChild)
+			for (CXMLNode const* pChild = _pNode->FirstChild(); pChild; pChild = pChild->NextSibling())
 				fp_TraceNodeTree(pChild, _Depth + 1);
 		}
 	}
@@ -228,7 +226,7 @@ namespace NMib::NXML
 
 	void CXMLDocument::f_SetText(CXMLNode *_pNode, CStr const &_Data)
 	{
-		for (CXMLNode *pChild = _pNode->FirstChild(); pChild; ++pChild)
+		for (CXMLNode *pChild = _pNode->FirstChild(); pChild; pChild = pChild->NextSibling())
 		{
 			XMLText *pText = pChild->ToText();
 			if (pText)
