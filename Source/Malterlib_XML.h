@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef __cplusplus
+
 #include <Mib/Core/Core>
 #include "../../External/tinyxml2/tinyxml2.h"
 #include <Mib/Time/Time>
@@ -105,3 +107,5 @@ using namespace NMib::NXML;
 #endif
 
 #include "Malterlib_XML.hpp"
+
+#endif
