@@ -2,6 +2,7 @@
 #include "Malterlib_XML.h"
 
 using namespace tinyxml2;
+using namespace NMib::NStr;
 
 namespace NMib::NXML
 {

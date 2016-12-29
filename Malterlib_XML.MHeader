@@ -19,12 +19,6 @@ Import "../Core/Lib_Malterlib.MTarget"
 		MalterlibNoShortcuts false
 	}
 	
-	Compile
-	{
-		!!CompileDialect C
-		PrefixHeader "@('Source/Malterlib_XML.h'->MakeAbsolute())"
-	}
-	
 	%Group XML
 	{
 		%Group Include
