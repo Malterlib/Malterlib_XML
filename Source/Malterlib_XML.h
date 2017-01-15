@@ -51,12 +51,12 @@ namespace NMib::NXML
 		CXMLDocument(CXMLDocument &&_ToMove);
 		~CXMLDocument();
 
-		bint f_ParseFile(CStr const &_FileName);
-		bint f_ParseString(CStr const &_String);
-		void f_SaveFile(CStr const &_FileName, EXMLOutputDialect _Dialect = EXMLOutputDialect_TinyXML);
+		bint f_ParseFile(NStr::CStr const &_FileName);
+		bint f_ParseString(NStr::CStr const &_String);
+		void f_SaveFile(NStr::CStr const &_FileName, EXMLOutputDialect _Dialect = EXMLOutputDialect_TinyXML);
 
-		CStr f_GetAsString(EXMLOutputDialect _Dialect = EXMLOutputDialect_TinyXML) const;
-		static CStr f_GetAsString(CXMLNode const *_pNode, EXMLOutputDialect _Dialect = EXMLOutputDialect_TinyXML);
+		NStr::CStr f_GetAsString(EXMLOutputDialect _Dialect = EXMLOutputDialect_TinyXML) const;
+		static NStr::CStr f_GetAsString(CXMLNode const *_pNode, EXMLOutputDialect _Dialect = EXMLOutputDialect_TinyXML);
 
 		CXMLNode *f_GetRootNode();
 		CXMLNode const *f_GetRootNode() const;
@@ -68,28 +68,28 @@ namespace NMib::NXML
 		static CXMLNode *f_Iterate(CXMLNode *_pNode, CXMLNode *_pLastIter = nullptr);
 		static CXMLNode const *f_Iterate(CXMLNode const *_pNode, CXMLNode const *_pLastIter = nullptr);
 
-		static CXMLElement *f_CreateElement(CXMLNode *_Parent, CStr const &_Name);
+		static CXMLElement *f_CreateElement(CXMLNode *_Parent, NStr::CStr const &_Name);
 
-		static CXMLElement *f_GetOrCreateElement(CXMLNode *_Parent, CStr const &_Name, bool &o_bWasCreated);
+		static CXMLElement *f_GetOrCreateElement(CXMLNode *_Parent, NStr::CStr const &_Name, bool &o_bWasCreated);
 
-		static void f_SetAttribute(CXMLElement *_Parent, CStr const &_Name, CStr const &_Value);
-		static CStr f_GetAttribute(CXMLElement const *_Parent, CStr const &_Name);
+		static void f_SetAttribute(CXMLElement *_Parent, NStr::CStr const &_Name, NStr::CStr const &_Value);
+		static NStr::CStr f_GetAttribute(CXMLElement const *_Parent, NStr::CStr const &_Name);
 
-		static CXMLNode *f_GetChildNode(CXMLNode *_pNode, CStr const &_Child);
-		static CXMLNode const* f_GetChildNode(CXMLNode const *_pNode, CStr const &_Child);
+		static CXMLNode *f_GetChildNode(CXMLNode *_pNode, NStr::CStr const &_Child);
+		static CXMLNode const* f_GetChildNode(CXMLNode const *_pNode, NStr::CStr const &_Child);
 
-		CXMLElement *f_CreateDefaultDocument(CStr const &_RootElementName);
+		CXMLElement *f_CreateDefaultDocument(NStr::CStr const &_RootElementName);
 
-		static CXMLElement *f_AddElementAndText(CXMLNode *_pNode, CStr const &_ElementName, CStr const &_Data);
-		static void f_AddText(CXMLNode *_pNode, CStr const &_Data);
-		static void f_SetText(CXMLNode *_pNode, CStr const &_Data);
+		static CXMLElement *f_AddElementAndText(CXMLNode *_pNode, NStr::CStr const &_ElementName, NStr::CStr const &_Data);
+		static void f_AddText(CXMLNode *_pNode, NStr::CStr const &_Data);
+		static void f_SetText(CXMLNode *_pNode, NStr::CStr const &_Data);
 
-		static CXMLNode *f_AddElement(CXMLNode *_pNode, CStr const &_ElementName);
-		static void f_AddElementAndText(CXMLNode *_pNode, CStr const &_ElementName, int64 _Value);
-		static void f_AddElementAndText(CXMLNode *_pNode, CStr const &_ElementName, fp64 _Value);
+		static CXMLNode *f_AddElement(CXMLNode *_pNode, NStr::CStr const &_ElementName);
+		static void f_AddElementAndText(CXMLNode *_pNode, NStr::CStr const &_ElementName, int64 _Value);
+		static void f_AddElementAndText(CXMLNode *_pNode, NStr::CStr const &_ElementName, fp64 _Value);
 
-		static CStr f_GetNodeText(CXMLNode const *_pNode);
-		static CStr f_GetValue(CXMLNode const *_pNode);
+		static NStr::CStr f_GetNodeText(CXMLNode const *_pNode);
+		static NStr::CStr f_GetValue(CXMLNode const *_pNode);
 		static int64 f_GetNodeInt(CXMLNode const *_pNode);
 		static fp64 f_GetNodeFloat(CXMLNode const *_pNode);
 
@@ -98,7 +98,7 @@ namespace NMib::NXML
 
 		void fp_TraceNodeTree(CXMLNode const *_pNode, int _Depth);
 
-		TCUniquePointer<tinyxml2::XMLDocument> mp_pDocument;
+		NPtr::TCUniquePointer<tinyxml2::XMLDocument> mp_pDocument;
 	};
 }
 
