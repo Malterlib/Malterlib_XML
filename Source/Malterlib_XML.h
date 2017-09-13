@@ -3,7 +3,7 @@
 #ifdef __cplusplus
 
 #include <Mib/Core/Core>
-#include "../../External/tinyxml2/tinyxml2.h"
+#include "../../../External/tinyxml2/tinyxml2.h"
 #include <Mib/Time/Time>
 
 namespace NMib::NXML
