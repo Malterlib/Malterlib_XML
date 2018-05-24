@@ -137,7 +137,7 @@ namespace NMib::NXML
 		return _pNode->Value();
 	}
 
-	CStr CXMLDocument::f_GetNodeText(CXMLNode const *_pNode)
+	CStr CXMLDocument::f_GetNodeText(CXMLNode const *_pNode, CStr const &_Default)
 	{
 		for (CXMLNode const* pChild = _pNode->FirstChild(); pChild; pChild = pChild->NextSibling())
 		{
@@ -146,17 +146,59 @@ namespace NMib::NXML
 				return pText->Value();
 		}
 
-		return CStr();
+		return _Default;
 	}
 
-	int64 CXMLDocument::f_GetNodeInt(CXMLNode const *_pNode)
+	int64 CXMLDocument::f_GetNodeInt(CXMLNode const *_pNode, int64 _Default)
 	{
-		return f_GetNodeText(_pNode).f_ToInt(int64(0));
+		return f_GetNodeText(_pNode).f_ToInt(_Default);
 	}
 
-	fp64 CXMLDocument::f_GetNodeFloat(CXMLNode const *_pNode)
+	fp64 CXMLDocument::f_GetNodeFloat(CXMLNode const *_pNode, fp64 _Default)
 	{
-		return f_GetNodeText(_pNode).f_ToFloat(fp64::fs_Inf());
+		return f_GetNodeText(_pNode).f_ToFloat(_Default);
+	}
+
+	bool CXMLDocument::f_GetNodeBool(CXMLNode const *_pNode, bool _bDefault)
+	{
+		CStr Text = f_GetNodeText(_pNode);
+		if (Text == "true")
+			return true;
+		else if (Text == "false")
+			return false;
+		return f_GetNodeInt(_pNode, _bDefault) != 0;
+	}
+
+	NStr::CStr CXMLDocument::f_GetChildValue(CXMLNode const *_pNode, NStr::CStr const &_Name, NStr::CStr const &_Default)
+	{
+		auto pChild = f_GetChildNode(_pNode, _Name);
+		if (!pChild)
+			return _Default;
+		return f_GetNodeText(pChild, _Default);
+	}
+
+	int64 CXMLDocument::f_GetChildValue(CXMLNode const *_pNode, NStr::CStr const &_Name, int64 _Default)
+	{
+		auto pChild = f_GetChildNode(_pNode, _Name);
+		if (!pChild)
+			return _Default;
+		return f_GetNodeInt(pChild, _Default);
+	}
+
+	fp64 CXMLDocument::f_GetChildValue(CXMLNode const *_pNode, NStr::CStr const &_Name, fp64 _Default)
+	{
+		auto pChild = f_GetChildNode(_pNode, _Name);
+		if (!pChild)
+			return _Default;
+		return f_GetNodeFloat(pChild, _Default);
+	}
+
+	bool CXMLDocument::f_GetChildValue(CXMLNode const *_pNode, NStr::CStr const &_Name, bool _bDefault)
+	{
+		auto pChild = f_GetChildNode(_pNode, _Name);
+		if (!pChild)
+			return _bDefault;
+		return f_GetNodeBool(pChild, _bDefault);
 	}
 
 	void CXMLDocument::fp_TraceNodeTree(CXMLNode const *_pNode, int _Depth)
