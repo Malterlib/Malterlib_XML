@@ -12,6 +12,20 @@ Import "../Core/Lib_Malterlib.MTarget"
 	}
 }
 
+Compile
+{
+	&
+	{
+		LanguageFamily Native
+		|
+		{
+			CompileDialect C
+		}
+	}
+
+	PreprocessorDefines "TINYXML2_STATIC;@(Compile.PreprocessorDefines)"
+}
+
 %Group "{Malterlib}/{Lib_Malterlib_XML}"
 {
 	Property
