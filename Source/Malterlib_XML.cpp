@@ -134,7 +134,10 @@ namespace NMib::NXML
 
 	CStr CXMLDocument::f_GetValue(CXMLNode const *_pNode)
 	{
-		return _pNode->Value();
+		if (_pNode->Value()) // Handle edge case of 'document node' that will return null 
+			return _pNode->Value();
+		else 
+			return CStr();
 	}
 
 	CStr CXMLDocument::f_GetNodeText(CXMLNode const *_pNode, CStr const &_Default)
