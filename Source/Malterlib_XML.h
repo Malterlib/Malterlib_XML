@@ -104,12 +104,12 @@ namespace NMib::NXML
 
 		void fp_TraceNodeTree(CXMLNode const *_pNode, int _Depth);
 
-		NPtr::TCUniquePointer<tinyxml2::XMLDocument> mp_pDocument;
+		NStorage::TCUniquePointer<tinyxml2::XMLDocument> mp_pDocument;
 	};
 }
 
 #ifndef DMibPNoShortCuts
-using namespace NMib::NXML;
+	using namespace NMib::NXML;
 #endif
 
 #include "Malterlib_XML.hpp"
