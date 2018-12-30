@@ -46,6 +46,8 @@ Compile
 		%File "Source/^*"
 		%Group External
 		{
+			!DocumentationEnabled true
+
 			Compile
 			{
 				!!MalterlibCompileSupportTabSetings true
