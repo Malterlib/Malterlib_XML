@@ -6,7 +6,7 @@ using namespace NMib::NStr;
 
 namespace NMib::NXML
 {
-	CXMLDocument::CXMLDocument(bint _bUseBOM)
+	CXMLDocument::CXMLDocument(bool _bUseBOM)
 		: mp_pDocument(fg_Construct())
 	{
 		mp_pDocument->SetBOM(_bUseBOM);
@@ -16,21 +16,21 @@ namespace NMib::NXML
 		: mp_pDocument(fg_Move(_ToMove.mp_pDocument))
 	{
 	}
-		
+
 	CXMLDocument::~CXMLDocument()
 	{
 	}
 
-	bint CXMLDocument::f_ParseString(CStr const &_String)
+	bool CXMLDocument::f_ParseString(CStr const &_String)
 	{
 		mp_pDocument->Clear();
-		
+
 		XMLError Error = mp_pDocument->Parse(_String.f_GetStr(), _String.f_GetLen());
 
 		return Error == XML_SUCCESS;
 	}
 
-	bint CXMLDocument::f_ParseFile(CStr const &_FileName)
+	bool CXMLDocument::f_ParseFile(CStr const &_FileName)
 	{
 		CStr ToParse = NFile::CFile::fs_ReadStringFromFile(_FileName, true);
 		return f_ParseString(ToParse);
@@ -39,11 +39,11 @@ namespace NMib::NXML
 	EXMLNodeType CXMLDocument::f_GetNodeType(CXMLNode const *_pNode)
 	{
 		if (_pNode->ToElement())
-			return EXMLNodeType_Element; 
+			return EXMLNodeType_Element;
 		else if (_pNode->ToText())
-			return EXMLNodeType_Text; 
+			return EXMLNodeType_Text;
 		else if (_pNode->ToComment())
-			return EXMLNodeType_Comment; 
+			return EXMLNodeType_Comment;
 		else if (_pNode->ToDocument())
 			return EXMLNodeType_Document;
 		else if (_pNode->ToDeclaration())
@@ -52,7 +52,7 @@ namespace NMib::NXML
 			return EXMLNodeType_Unknown;
 		return EXMLNodeType_Element;
 	}
-	
+
 	CStr CXMLDocument::f_GetAsString(CXMLNode const *_pNode, EXMLOutputDialect _Dialect)
 	{
 		XMLPrinter Printer{nullptr, (PrintDialect)_Dialect};
@@ -104,7 +104,7 @@ namespace NMib::NXML
 
 		return pClone;
 	}
-	
+
 	CXMLNode *CXMLDocument::f_GetRootNode()
 	{
 		return mp_pDocument.f_Get();
@@ -134,9 +134,9 @@ namespace NMib::NXML
 
 	CStr CXMLDocument::f_GetValue(CXMLNode const *_pNode)
 	{
-		if (_pNode->Value()) // Handle edge case of 'document node' that will return null 
+		if (_pNode->Value()) // Handle edge case of 'document node' that will return null
 			return _pNode->Value();
-		else 
+		else
 			return CStr();
 	}
 
@@ -206,7 +206,7 @@ namespace NMib::NXML
 
 	void CXMLDocument::fp_TraceNodeTree(CXMLNode const *_pNode, int _Depth)
 	{
-		if (_pNode) 
+		if (_pNode)
 		{
 			DDTrace("{sj*}{}" DNewLine, "" << _Depth*2 << _pNode->Value());
 

@@ -11,17 +11,17 @@ namespace NMib::NXML
 	typedef tinyxml2::XMLNode CXMLNode;
 	typedef tinyxml2::XMLElement CXMLElement;
 	typedef tinyxml2::XMLAttribute CXMLAttribute;
-	
+
 	enum EXMLNodeType
 	{
 		EXMLNodeType_Element
-		, EXMLNodeType_Text 
-		, EXMLNodeType_Comment 
+		, EXMLNodeType_Text
+		, EXMLNodeType_Comment
 		, EXMLNodeType_Document
 		, EXMLNodeType_Declaration
 		, EXMLNodeType_Unknown
 	};
-	
+
 	enum EXMLOutputDialect
 	{
 		EXMLOutputDialect_TinyXML = tinyxml2::PRINT_DIALECT_TINYXML
@@ -29,7 +29,7 @@ namespace NMib::NXML
 		, EXMLOutputDialect_VisualStudio = tinyxml2::PRINT_DIALECT_VISUALSTUDIO
 		, EXMLOutputDialect_Xcode = tinyxml2::PRINT_DIALECT_XCODE
 	};
-	
+
 	class CXMLDocument
 	{
 	public:
@@ -43,16 +43,16 @@ namespace NMib::NXML
 			operator t_CType * () const;
 			t_CType *operator -> () const;
 		};
-		
+
 		typedef TCNodeIterator<CXMLNode> CNodeIterator;
 		typedef TCNodeIterator<CXMLNode const> CConstNodeIterator;
-		
-		CXMLDocument(bint _bUseBOM = true);
+
+		CXMLDocument(bool _bUseBOM = true);
 		CXMLDocument(CXMLDocument &&_ToMove);
 		~CXMLDocument();
 
-		bint f_ParseFile(NStr::CStr const &_FileName);
-		bint f_ParseString(NStr::CStr const &_String);
+		bool f_ParseFile(NStr::CStr const &_FileName);
+		bool f_ParseString(NStr::CStr const &_String);
 		void f_SaveFile(NStr::CStr const &_FileName, EXMLOutputDialect _Dialect = EXMLOutputDialect_TinyXML);
 
 		NStr::CStr f_GetAsString(EXMLOutputDialect _Dialect = EXMLOutputDialect_TinyXML) const;
@@ -62,7 +62,7 @@ namespace NMib::NXML
 		CXMLNode const *f_GetRootNode() const;
 		static CXMLNode *f_DeepClone(CXMLNode const *_pSource, tinyxml2::XMLDocument *_pDocument);
 		void f_TraceNodeTree(CXMLNode *_pNode = nullptr);
-		
+
 		static EXMLNodeType f_GetNodeType(CXMLNode const *_pNode);
 
 		static CXMLNode *f_Iterate(CXMLNode *_pNode, CXMLNode *_pLastIter = nullptr);
