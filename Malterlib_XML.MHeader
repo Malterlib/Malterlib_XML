@@ -7,7 +7,7 @@ Import "../Core/Lib_Malterlib.MTarget"
 {
 	Repository
 	{
-		Type External
+		Type "External"
 		Remotes "upstream=https://github.com/leethomason/tinyxml2.git;@(Repository.Remotes)"
 	}
 }
@@ -16,10 +16,10 @@ Compile
 {
 	&
 	{
-		LanguageFamily Native
+		LanguageFamily "Native"
 		|
 		{
-			CompileDialect C
+			CompileDialect "C"
 		}
 	}
 
@@ -33,9 +33,9 @@ Compile
 		MalterlibNoShortcuts false
 	}
 	
-	%Group XML
+	%Group "XML"
 	{
-		%Group Include
+		%Group "Include"
 		{
 			Compile.Type "C++"
 			{
@@ -44,7 +44,7 @@ Compile
 			%File "Include/Mib/XML/^*"
 		}
 		%File "Source/^*"
-		%Group External
+		%Group "External"
 		{
 			!DocumentationEnabled true
 
@@ -58,12 +58,12 @@ Compile
 			%File "../../External/tinyxml2/tinyxml2.cpp"
 			%File "../../External/tinyxml2/tinyxml2.h"
 		}
-		%Group Documentation
+		%Group "Documentation"
 		{
 			%File "Documentation/*"
 		}
 	}
-	%Dependency Lib_Malterlib_Concurrency
+	%Dependency "Lib_Malterlib_Concurrency"
 	{
 		Dependency.Indirect true
 	}	
