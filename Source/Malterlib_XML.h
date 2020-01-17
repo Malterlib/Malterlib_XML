@@ -80,13 +80,14 @@ namespace NMib::NXML
 
 		CXMLElement *f_CreateDefaultDocument(NStr::CStr const &_RootElementName);
 
-		static CXMLElement *f_AddElementAndText(CXMLNode *_pNode, NStr::CStr const &_ElementName, NStr::CStr const &_Data);
 		static void f_AddText(CXMLNode *_pNode, NStr::CStr const &_Data);
 		static void f_SetText(CXMLNode *_pNode, NStr::CStr const &_Data);
 
 		static CXMLNode *f_AddElement(CXMLNode *_pNode, NStr::CStr const &_ElementName);
-		static void f_AddElementAndText(CXMLNode *_pNode, NStr::CStr const &_ElementName, int64 _Value);
-		static void f_AddElementAndText(CXMLNode *_pNode, NStr::CStr const &_ElementName, fp64 _Value);
+		static CXMLElement *f_AddElementAndText(CXMLNode *_pNode, NStr::CStr const &_ElementName, NStr::CStr const &_Data);
+		static CXMLElement *f_AddElementAndInt(CXMLNode *_pNode, NStr::CStr const &_ElementName, int64 _Value);
+		static CXMLElement *f_AddElementAndFloat(CXMLNode *_pNode, NStr::CStr const &_ElementName, fp64 _Value);
+		static CXMLElement *f_AddElementAndBool(CXMLNode *_pNode, NStr::CStr const &_ElementName, bool _bValue);
 
 		static NStr::CStr f_GetNodeText(CXMLNode const *_pNode, NStr::CStr const &_Default = {});
 		static NStr::CStr f_GetValue(CXMLNode const *_pNode);

@@ -297,20 +297,25 @@ namespace NMib::NXML
 	}
 
 
-	CXMLElement *CXMLDocument::f_AddElementAndText(CXMLNode *_pNode, CStr const &strElementName, CStr const &strDataText)
+	CXMLElement *CXMLDocument::f_AddElementAndText(CXMLNode *_pNode, CStr const &_ElementName, CStr const &_Data)
 	{
-		CXMLElement *pTempElement = _pNode->GetDocument()->NewElement(strElementName.f_GetStr());
-		pTempElement->SetText(strDataText.f_GetStr());
+		CXMLElement *pTempElement = _pNode->GetDocument()->NewElement(_ElementName.f_GetStr());
+		pTempElement->SetText(_Data.f_GetStr());
 		return _pNode->InsertEndChild(pTempElement)->ToElement();
 	}
 
-	void CXMLDocument::f_AddElementAndText(CXMLNode *_pNode, CStr const &_ElementName, int64 _Value)
+	CXMLElement *CXMLDocument::f_AddElementAndInt(CXMLNode *_pNode, CStr const &_ElementName, int64 _Value)
 	{
-		f_AddElementAndText(_pNode, _ElementName, CStr::fs_ToStr(_Value));
+		return f_AddElementAndText(_pNode, _ElementName, CStr::fs_ToStr(_Value));
 	}
 
-	void CXMLDocument::f_AddElementAndText(CXMLNode *_pNode, CStr const &_ElementName, fp64 _Value)
+	CXMLElement *CXMLDocument::f_AddElementAndFloat(CXMLNode *_pNode, CStr const &_ElementName, fp64 _Value)
 	{
-		f_AddElementAndText(_pNode, _ElementName, CStr::fs_ToStr(_Value));
+		return f_AddElementAndText(_pNode, _ElementName, CStr::fs_ToStr(_Value));
+	}
+
+	CXMLElement *CXMLDocument::f_AddElementAndBool(CXMLNode *_pNode, NStr::CStr const &_ElementName, bool _bValue)
+	{
+		return f_AddElementAndText(_pNode, _ElementName, _bValue ? "true" : "false");
 	}
 }
