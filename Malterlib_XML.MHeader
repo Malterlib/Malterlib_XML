@@ -8,7 +8,7 @@ Import "../Core/Lib_Malterlib.MTarget"
 	Repository
 	{
 		Type "External"
-		Remotes "upstream=https://github.com/leethomason/tinyxml2.git;@(Repository.Remotes)"
+		Remotes =+ {Name: "upstream", URL: "https://github.com/leethomason/tinyxml2.git"}
 	}
 }
 
@@ -23,7 +23,7 @@ Compile
 		}
 	}
 
-	PreprocessorDefines "TINYXML2_STATIC;@(Compile.PreprocessorDefines)"
+	PreprocessorDefines += "TINYXML2_STATIC"
 }
 
 %Group "{Malterlib}/{Lib_Malterlib_XML}"
@@ -71,21 +71,14 @@ Compile
 
 Property
 {
-	MalterlibLibrary_XML true
-	{
-		&
-		{
-			MalterlibLibrary_XML ""
-			MalterlibLibrary_All true
-		}
-	}
-	MalterlibSubLibraries "XML;@(MalterlibSubLibraries)"
+	MalterlibLibrary_XML define bool = MalterlibLibrary_All
+	MalterlibSubLibraries =+ "XML"
 	{
 		!!MalterlibLibrary_XML true
 	}
-	MalterlibLibrarySeparate_Lib_Malterlib_XML true
-//	MalterlibSubLibrarySeparate_Lib_Malterlib_XML true
-	MalterlibIncludeRoots "@('Include'->MakeAbsolute());@(MalterlibIncludeRoots)"
+	MalterlibLibrarySeparate_Lib_Malterlib_XML define bool = true
+//	MalterlibSubLibrarySeparate_Lib_Malterlib_XML define bool = true
+	MalterlibIncludeRoots =+ "Include"->MakeAbsolute()
 	{
 		!!MalterlibLibrary_XML true
 	}
@@ -98,8 +91,8 @@ Property
 Property
 {
 	!!MalterlibEnableInternalTests true
-	MalterlibTests "Malterlib_XML;@(MalterlibTests)"
-	MalterlibTestFiles_Malterlib_XML "@('Test/*'->MakeAbsolute())"
-	MalterlibTestDependencies_Malterlib_XML "Lib_Malterlib_XML"
-	MalterlibTestExtraGroups_Malterlib_XML "{Test}/{Malterlib_XML}"
+	MalterlibTests =+ "Malterlib_XML"
+	MalterlibTestFiles_Malterlib_XML define [type(CEntity)] = ["Test/*"->MakeAbsolute()]
+	MalterlibTestDependencies_Malterlib_XML define [type(CEntity)] = ["Lib_Malterlib_XML"]
+	MalterlibTestExtraGroups_Malterlib_XML define [string] = ["{Test}/{Malterlib_XML}"]
 }
