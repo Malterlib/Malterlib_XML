@@ -215,9 +215,9 @@ namespace NMib::NXML
 		}
 	}
 
-	CXMLElement *CXMLDocument::f_CreateDefaultDocument(CStr const &_RootElementName)
+	CXMLElement *CXMLDocument::f_CreateDefaultDocument(CStr const &_RootElementName, ch8 const *_pDeclaration)
 	{
-		XMLDeclaration * pDeclaration = mp_pDocument->NewDeclaration();
+		XMLDeclaration * pDeclaration = mp_pDocument->NewDeclaration(_pDeclaration);
 		mp_pDocument->InsertEndChild(pDeclaration);
 		CXMLElement *pElement = mp_pDocument->NewElement(_RootElementName.f_GetStr());
 		return mp_pDocument->InsertEndChild(pElement)->ToElement();

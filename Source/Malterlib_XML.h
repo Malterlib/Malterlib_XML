@@ -78,7 +78,7 @@ namespace NMib::NXML
 		static CXMLNode *f_GetChildNode(CXMLNode *_pNode, NStr::CStr const &_Child);
 		static CXMLNode const* f_GetChildNode(CXMLNode const *_pNode, NStr::CStr const &_Child);
 
-		CXMLElement *f_CreateDefaultDocument(NStr::CStr const &_RootElementName);
+		CXMLElement *f_CreateDefaultDocument(NStr::CStr const &_RootElementName, ch8 const* _pDeclaration = nullptr);
 
 		static void f_AddText(CXMLNode *_pNode, NStr::CStr const &_Data);
 		static void f_SetText(CXMLNode *_pNode, NStr::CStr const &_Data);
