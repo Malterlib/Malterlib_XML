@@ -71,13 +71,13 @@ Compile
 
 Property
 {
-	MalterlibLibrary_XML define bool = MalterlibLibrary_All
+	MalterlibLibrary_XML: bool = MalterlibLibrary_All
 	MalterlibSubLibraries =+ "XML"
 	{
 		!!MalterlibLibrary_XML true
 	}
-	MalterlibLibrarySeparate_Lib_Malterlib_XML define bool = true
-//	MalterlibSubLibrarySeparate_Lib_Malterlib_XML define bool = true
+	MalterlibLibrarySeparate_Lib_Malterlib_XML: bool = true
+//	MalterlibSubLibrarySeparate_Lib_Malterlib_XML: bool = true
 	MalterlibIncludeRoots =+ "Include"->MakeAbsolute()
 	{
 		!!MalterlibLibrary_XML true
@@ -92,7 +92,7 @@ Property
 {
 	!!MalterlibEnableInternalTests true
 	MalterlibTests =+ "Malterlib_XML"
-	MalterlibTestFiles_Malterlib_XML define [type(CEntity)] = ["Test/*"->MakeAbsolute()]
-	MalterlibTestDependencies_Malterlib_XML define [type(CEntity)] = ["Lib_Malterlib_XML"]
-	MalterlibTestExtraGroups_Malterlib_XML define [string] = ["{Test}/{Malterlib_XML}"]
+	MalterlibTestFiles_Malterlib_XML: [type(CEntity)] = ["Test/*"->MakeAbsolute()]
+	MalterlibTestDependencies_Malterlib_XML: [type(CEntity)] = ["Lib_Malterlib_XML"]
+	MalterlibTestExtraGroups_Malterlib_XML: [string] = ["{Test}/{Malterlib_XML}"]
 }
