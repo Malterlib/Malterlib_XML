@@ -11,10 +11,10 @@ namespace tinyxml2
 
 namespace NMib::NXML
 {
-	typedef tinyxml2::XMLNode CXMLNode;
-	typedef tinyxml2::XMLElement CXMLElement;
-	typedef tinyxml2::XMLAttribute CXMLAttribute;
-	
+	using CXMLNode = tinyxml2::XMLNode;
+	using CXMLElement = tinyxml2::XMLElement;
+	using CXMLAttribute = tinyxml2::XMLAttribute;
+
 	class CXMLDocument;
 }
 

@@ -8,9 +8,9 @@
 
 namespace NMib::NXML
 {
-	typedef tinyxml2::XMLNode CXMLNode;
-	typedef tinyxml2::XMLElement CXMLElement;
-	typedef tinyxml2::XMLAttribute CXMLAttribute;
+	using CXMLNode = tinyxml2::XMLNode;
+	using CXMLElement = tinyxml2::XMLElement;
+	using CXMLAttribute = tinyxml2::XMLAttribute;
 
 	enum EXMLNodeType
 	{
@@ -44,8 +44,8 @@ namespace NMib::NXML
 			t_CType *operator -> () const;
 		};
 
-		typedef TCNodeIterator<CXMLNode> CNodeIterator;
-		typedef TCNodeIterator<CXMLNode const> CConstNodeIterator;
+		using CNodeIterator = TCNodeIterator<CXMLNode>;
+		using CConstNodeIterator = TCNodeIterator<CXMLNode const>;
 
 		CXMLDocument(bool _bUseBOM = true);
 		CXMLDocument(CXMLDocument &&_ToMove);
