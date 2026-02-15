@@ -208,7 +208,7 @@ namespace NMib::NXML
 	{
 		if (_pNode)
 		{
-			DDTrace("{sj*}{}" DNewLine, "" << _Depth*2 << _pNode->Value());
+			DDTrace("{sj*}{}" DNewLine, "", _Depth*2, _pNode->Value());
 
 			for (CXMLNode const* pChild = _pNode->FirstChild(); pChild; pChild = pChild->NextSibling())
 				fp_TraceNodeTree(pChild, _Depth + 1);
