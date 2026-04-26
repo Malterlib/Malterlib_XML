@@ -9,6 +9,9 @@ Import "../Core/Lib_Malterlib.MTarget"
 	{
 		Type "External"
 		Remotes =+ {Name: "upstream", URL: "https://github.com/leethomason/tinyxml2.git"}
+		{
+			!!MalterlibAddUpstreams true
+		}
 	}
 }
 
@@ -32,7 +35,7 @@ Compile
 	{
 		MalterlibNoShortcuts false
 	}
-	
+
 	%Group "XML"
 	{
 		%Group "Include"
@@ -66,7 +69,7 @@ Compile
 	%Dependency "Lib_Malterlib_Concurrency"
 	{
 		Dependency.Indirect true
-	}	
+	}
 }
 
 Property
