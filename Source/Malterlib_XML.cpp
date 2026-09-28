@@ -85,13 +85,13 @@ namespace NMib::NXML
 				}
 			)
 		;
-	#ifdef DPlatformFamily_Windows
-		 errno_t Errno = _wfopen_s(&pFile, CWStr(_FileName), L"w");
-		 if (pFile && !Errno)
-	#else
+#ifdef DPlatformFamily_Windows
+		errno_t Errno = _wfopen_s(&pFile, CWStr(_FileName), L"w");
+		if (pFile && !Errno)
+#else
 		pFile = fopen(_FileName.f_GetStr(), "w");
 		if (pFile)
-	#endif
+#endif
 		{
 			XMLPrinter Printer{pFile, (PrintDialect)_Dialect};
 			mp_pDocument->Print(&Printer);
@@ -112,7 +112,7 @@ namespace NMib::NXML
 		return mp_pDocument.f_Get();
 	}
 
-	CXMLNode const* CXMLDocument::f_GetRootNode() const
+	CXMLNode const *CXMLDocument::f_GetRootNode() const
 	{
 		return mp_pDocument.f_Get();
 	}
@@ -129,7 +129,7 @@ namespace NMib::NXML
 		return _pNode->FirstChildElement(_Child.f_GetStr());
 	}
 
-	CXMLNode const* CXMLDocument::f_GetChildNode(CXMLNode const *_pNode, CStr const &_Child)
+	CXMLNode const *CXMLDocument::f_GetChildNode(CXMLNode const *_pNode, CStr const &_Child)
 	{
 		return _pNode->FirstChildElement(_Child.f_GetStr());
 	}
@@ -144,9 +144,9 @@ namespace NMib::NXML
 
 	CStr CXMLDocument::f_GetNodeText(CXMLNode const *_pNode, CStr const &_Default)
 	{
-		for (CXMLNode const* pChild = _pNode->FirstChild(); pChild; pChild = pChild->NextSibling())
+		for (CXMLNode const *pChild = _pNode->FirstChild(); pChild; pChild = pChild->NextSibling())
 		{
-			XMLText const* pText = pChild->ToText();
+			XMLText const *pText = pChild->ToText();
 			if (pText)
 				return pText->Value();
 		}
@@ -210,16 +210,16 @@ namespace NMib::NXML
 	{
 		if (_pNode)
 		{
-			DDTrace("{sj*}{}" DNewLine, "", _Depth*2, _pNode->Value());
+			DDTrace("{sj*}{}" DNewLine, "", _Depth * 2, _pNode->Value());
 
-			for (CXMLNode const* pChild = _pNode->FirstChild(); pChild; pChild = pChild->NextSibling())
+			for (CXMLNode const *pChild = _pNode->FirstChild(); pChild; pChild = pChild->NextSibling())
 				fp_TraceNodeTree(pChild, _Depth + 1);
 		}
 	}
 
 	CXMLElement *CXMLDocument::f_CreateDefaultDocument(CStr const &_RootElementName, ch8 const *_pDeclaration)
 	{
-		XMLDeclaration * pDeclaration = mp_pDocument->NewDeclaration(_pDeclaration);
+		XMLDeclaration *pDeclaration = mp_pDocument->NewDeclaration(_pDeclaration);
 		mp_pDocument->InsertEndChild(pDeclaration);
 		CXMLElement *pElement = mp_pDocument->NewElement(_RootElementName.f_GetStr());
 		return mp_pDocument->InsertEndChild(pElement)->ToElement();
@@ -233,7 +233,7 @@ namespace NMib::NXML
 			return _pLastIter->NextSibling();
 	}
 
-	CXMLNode const*CXMLDocument::f_Iterate(CXMLNode const *_pNode, CXMLNode const *_pLastIter)
+	CXMLNode const *CXMLDocument::f_Iterate(CXMLNode const *_pNode, CXMLNode const *_pLastIter)
 	{
 		if (!_pLastIter)
 			return _pNode->FirstChild();
@@ -292,12 +292,11 @@ namespace NMib::NXML
 		_pNode->InsertEndChild(pTempNode);
 	}
 
-	CXMLNode* CXMLDocument::f_AddElement(CXMLNode *_pNode, CStr const &_ElementName)
+	CXMLNode *CXMLDocument::f_AddElement(CXMLNode *_pNode, CStr const &_ElementName)
 	{
 		CXMLElement *pTempElement = _pNode->GetDocument()->NewElement(_ElementName.f_GetStr());
 		return _pNode->InsertEndChild(pTempElement);
 	}
-
 
 	CXMLElement *CXMLDocument::f_AddElementAndText(CXMLNode *_pNode, CStr const &_ElementName, CStr const &_Data)
 	{

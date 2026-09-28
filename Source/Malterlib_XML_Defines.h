@@ -22,7 +22,7 @@ namespace NMib::NXML
 }
 
 #ifndef DMibPNoShortCuts
-	using namespace NMib::NXML;
+using namespace NMib::NXML;
 #endif
 
 #endif

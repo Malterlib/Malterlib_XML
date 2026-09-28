@@ -13,7 +13,7 @@ namespace NMib::NXML
 	}
 
 	template <typename t_CType>
-	CXMLDocument::TCNodeIterator<t_CType> &CXMLDocument::TCNodeIterator<t_CType>::operator ++()
+	CXMLDocument::TCNodeIterator<t_CType> &CXMLDocument::TCNodeIterator<t_CType>::operator ++ ()
 	{
 		if (m_pCurrent)
 			m_pCurrent = CXMLDocument::f_Iterate(m_pToIterate, m_pCurrent);
@@ -27,7 +27,7 @@ namespace NMib::NXML
 	}
 
 	template <typename t_CType>
-	t_CType * CXMLDocument::TCNodeIterator<t_CType>::operator -> () const
+	t_CType *CXMLDocument::TCNodeIterator<t_CType>::operator -> () const
 	{
 		return m_pCurrent;
 	}
