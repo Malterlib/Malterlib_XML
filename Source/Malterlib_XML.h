@@ -27,10 +27,10 @@ namespace NMib::NXML
 
 	enum EXMLOutputDialect
 	{
-		EXMLOutputDialect_TinyXML = tinyxml2::PRINT_DIALECT_TINYXML
-		, EXMLOutputDialect_Compact = tinyxml2::PRINT_DIALECT_COMPACT
+		EXMLOutputDialect_TinyXML        = tinyxml2::PRINT_DIALECT_TINYXML
+		, EXMLOutputDialect_Compact      = tinyxml2::PRINT_DIALECT_COMPACT
 		, EXMLOutputDialect_VisualStudio = tinyxml2::PRINT_DIALECT_VISUALSTUDIO
-		, EXMLOutputDialect_Xcode = tinyxml2::PRINT_DIALECT_XCODE
+		, EXMLOutputDialect_Xcode        = tinyxml2::PRINT_DIALECT_XCODE
 	};
 
 	class CXMLDocument
@@ -42,7 +42,7 @@ namespace NMib::NXML
 			t_CType *m_pToIterate;
 			t_CType *m_pCurrent;
 			TCNodeIterator(t_CType *_pNode);
-			TCNodeIterator &operator ++();
+			TCNodeIterator &operator ++ ();
 			operator t_CType * () const;
 			t_CType *operator -> () const;
 		};
@@ -79,9 +79,9 @@ namespace NMib::NXML
 		static NStr::CStr f_GetAttribute(CXMLElement const *_Parent, NStr::CStr const &_Name);
 
 		static CXMLNode *f_GetChildNode(CXMLNode *_pNode, NStr::CStr const &_Child);
-		static CXMLNode const* f_GetChildNode(CXMLNode const *_pNode, NStr::CStr const &_Child);
+		static CXMLNode const *f_GetChildNode(CXMLNode const *_pNode, NStr::CStr const &_Child);
 
-		CXMLElement *f_CreateDefaultDocument(NStr::CStr const &_RootElementName, ch8 const* _pDeclaration = nullptr);
+		CXMLElement *f_CreateDefaultDocument(NStr::CStr const &_RootElementName, ch8 const *_pDeclaration = nullptr);
 
 		static void f_AddText(CXMLNode *_pNode, NStr::CStr const &_Data);
 		static void f_SetText(CXMLNode *_pNode, NStr::CStr const &_Data);
@@ -104,7 +104,7 @@ namespace NMib::NXML
 		static bool f_GetChildValue(CXMLNode const *_pNode, NStr::CStr const &_Name, bool _bDefault);
 
 	private:
-		CXMLDocument(CXMLDocument const&);
+		CXMLDocument(CXMLDocument const &);
 
 		void fp_TraceNodeTree(CXMLNode const *_pNode, int _Depth);
 
@@ -113,7 +113,7 @@ namespace NMib::NXML
 }
 
 #ifndef DMibPNoShortCuts
-	using namespace NMib::NXML;
+using namespace NMib::NXML;
 #endif
 
 #include "Malterlib_XML.hpp"
