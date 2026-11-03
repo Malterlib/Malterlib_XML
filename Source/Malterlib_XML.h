@@ -103,7 +103,7 @@ namespace NMib::NXML
 		static bool fs_GetChildValue(CXMLNode const *_pNode, NStr::CStr const &_Name, bool _bDefault);
 
 	private:
-		CXMLDocument(CXMLDocument const &);
+		CXMLDocument(CXMLDocument const &_Other);
 
 		void fp_TraceNodeTree(CXMLNode const *_pNode, int _Depth);
 
