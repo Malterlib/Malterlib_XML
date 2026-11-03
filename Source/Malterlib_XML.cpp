@@ -241,9 +241,9 @@ namespace NMib::NXML
 			return _pLastIter->NextSibling();
 	}
 
-	CXMLElement *CXMLDocument::fs_GetOrCreateElement(CXMLNode *_Parent, CStr const &_Name, bool &_bWasCreated)
+	CXMLElement *CXMLDocument::fs_GetOrCreateElement(CXMLNode *_pParent, CStr const &_Name, bool &_bWasCreated)
 	{
-		for (auto pElement = _Parent->FirstChildElement(); pElement; pElement = pElement->NextSiblingElement())
+		for (auto pElement = _pParent->FirstChildElement(); pElement; pElement = pElement->NextSiblingElement())
 		{
 			if (pElement->Value() == _Name)
 			{
@@ -253,7 +253,7 @@ namespace NMib::NXML
 		}
 
 		_bWasCreated = true;
-		return fs_CreateElement(_Parent, _Name);
+		return fs_CreateElement(_pParent, _Name);
 	}
 
 	CXMLElement *CXMLDocument::fs_CreateElement(CXMLNode *_pParent, CStr const &_Name)
@@ -262,14 +262,14 @@ namespace NMib::NXML
 		return _pParent->InsertEndChild(pTempElement)->ToElement();
 	}
 
-	CStr CXMLDocument::fs_GetAttribute(CXMLElement const *_Parent, CStr const &_Name)
+	CStr CXMLDocument::fs_GetAttribute(CXMLElement const *_pParent, CStr const &_Name)
 	{
-		return _Parent->Attribute(_Name.f_GetStr());
+		return _pParent->Attribute(_Name.f_GetStr());
 	}
 
-	void CXMLDocument::fs_SetAttribute(CXMLElement *_Parent, CStr const &_Name, CStr const &_Value)
+	void CXMLDocument::fs_SetAttribute(CXMLElement *_pParent, CStr const &_Name, CStr const &_Value)
 	{
-		_Parent->SetAttribute(_Name.f_GetStr(), _Value.f_GetStr());
+		_pParent->SetAttribute(_Name.f_GetStr(), _Value.f_GetStr());
 	}
 
 	void CXMLDocument::fs_SetText(CXMLNode *_pNode, CStr const &_Data)

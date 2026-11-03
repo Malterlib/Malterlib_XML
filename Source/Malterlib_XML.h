@@ -70,12 +70,12 @@ namespace NMib::NXML
 		static CXMLNode *fs_Iterate(CXMLNode *_pNode, CXMLNode *_pLastIter = nullptr);
 		static CXMLNode const *fs_Iterate(CXMLNode const *_pNode, CXMLNode const *_pLastIter = nullptr);
 
-		static CXMLElement *fs_CreateElement(CXMLNode *_Parent, NStr::CStr const &_Name);
+		static CXMLElement *fs_CreateElement(CXMLNode *_pParent, NStr::CStr const &_Name);
 
-		static CXMLElement *fs_GetOrCreateElement(CXMLNode *_Parent, NStr::CStr const &_Name, bool &o_bWasCreated);
+		static CXMLElement *fs_GetOrCreateElement(CXMLNode *_pParent, NStr::CStr const &_Name, bool &o_bWasCreated);
 
-		static void fs_SetAttribute(CXMLElement *_Parent, NStr::CStr const &_Name, NStr::CStr const &_Value);
-		static NStr::CStr fs_GetAttribute(CXMLElement const *_Parent, NStr::CStr const &_Name);
+		static void fs_SetAttribute(CXMLElement *_pParent, NStr::CStr const &_Name, NStr::CStr const &_Value);
+		static NStr::CStr fs_GetAttribute(CXMLElement const *_pParent, NStr::CStr const &_Name);
 
 		static CXMLNode *fs_GetChildNode(CXMLNode *_pNode, NStr::CStr const &_Child);
 		static CXMLNode const *fs_GetChildNode(CXMLNode const *_pNode, NStr::CStr const &_Child);
