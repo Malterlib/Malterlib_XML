@@ -5,12 +5,14 @@
 
 #ifdef __cplusplus
 
+// NOLINTBEGIN(malterlib-type-naming): the names in tinyxml2
 namespace tinyxml2
 {
 	class XMLNode;
 	class XMLElement;
 	class XMLAttribute;
 }
+// NOLINTEND(malterlib-type-naming)
 
 namespace NMib::NXML
 {
