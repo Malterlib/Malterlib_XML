@@ -18,7 +18,7 @@ namespace NMib::NXML
 	using CXMLElement = tinyxml2::XMLElement;
 	using CXMLAttribute = tinyxml2::XMLAttribute;
 
-	class CXMLDocument;
+	struct CXMLDocument;
 }
 
 #ifndef DMibPNoShortCuts

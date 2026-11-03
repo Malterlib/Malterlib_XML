@@ -6,9 +6,8 @@
 
 namespace
 {
-	class CGeneral_Tests : public NMib::NTest::CTest
+	struct CGeneral_Tests : public NMib::NTest::CTest
 	{
-	public:
 		void f_DoTests()
 		{
 		}

@@ -33,9 +33,8 @@ namespace NMib::NXML
 		, EXMLOutputDialect_Xcode        = tinyxml2::PRINT_DIALECT_XCODE
 	};
 
-	class CXMLDocument
+	struct CXMLDocument
 	{
-	public:
 		template <typename t_CType>
 		struct TCNodeIterator
 		{
