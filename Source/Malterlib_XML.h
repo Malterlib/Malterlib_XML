@@ -38,12 +38,13 @@ namespace NMib::NXML
 		template <typename t_CType>
 		struct TCNodeIterator
 		{
-			t_CType *m_pToIterate;
-			t_CType *m_pCurrent;
 			TCNodeIterator(t_CType *_pNode);
 			TCNodeIterator &operator ++ ();
 			operator t_CType * () const;
 			t_CType *operator -> () const;
+
+			t_CType *m_pToIterate;
+			t_CType *m_pCurrent;
 		};
 
 		using CNodeIterator = TCNodeIterator<CXMLNode>;
